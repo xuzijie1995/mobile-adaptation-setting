@@ -1,0 +1,52 @@
+@function px2rem($px){
+	$rem : 75;
+	@return ($px/$rem) * 1rem;
+}
+@mixin prefix($property, $value...){
+	-webkit-#{$property}: $value;
+	-moz-#{$property}: $value;
+	-o-#{$property}: $value;
+	#{$property}: $value;
+}
+@mixin dpr($name,$px) {
+	#{$name}: round($px / 2) * 1px;
+    [data-dpr="2"] & {
+        #{$name}: $px * 1px;
+    }
+    [data-dpr="2.5"] & {
+        #{$name}: round($px * 2.5 / 2) * 1px;
+    }
+    [data-dpr="2.75"] & {
+        #{$name}: round($px * 2.75 / 2) * 1px;
+    }
+    [data-dpr="3"] & {
+        #{$name}: round($px * 3 / 2) * 1px;
+    }
+    [data-dpr="4"] & {
+        #{$name}: $px * 2px;
+    }
+}
+@mixin background($url,$type) {
+	background: url($url+$type) center center no-repeat;
+	background-size:cover;
+    [data-dpr="2"] & {
+        background: url($url+"@2x"+$type) center center no-repeat;
+		background-size:cover;
+    }
+    [data-dpr="2.5"] & {
+        background: url($url+"@2x"+$type) center center no-repeat;
+		background-size:cover;
+    }
+    [data-dpr="2.75"] & {
+       background: url($url+"@2x"+$type) center center no-repeat;
+	   background-size:cover;
+    }
+    [data-dpr="3"] & {
+        background: url($url+"@3x"+$type) center center no-repeat;
+		background-size:cover;
+    }
+    [data-dpr="4"] & {
+        background: url($url+"@3x"+$type) center center no-repeat;
+		background-size:cover;
+    }
+}
